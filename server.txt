@@ -1,0 +1,4 @@
+
+#php -S localhost:8080 -t public //write it at terminale
+#composer init
+#composer require illuminate/database
