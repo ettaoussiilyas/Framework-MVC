@@ -1,0 +1,21 @@
+{
+    "name": "your-name/mvc-framework",
+    "description": "A modern MVC PHP framework with Eloquent",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "App\\Models\\": "app/models/",
+            "App\\Database\\": "app/database/",
+            "App\\Database\\Migrations\\": "app/database/migrations/",
+            "App\\Config\\": "config/"
+        }
+    },
+    "require": {
+        "php": "^8.1",
+        "vlucas/phpdotenv": "^5.5",
+        "illuminate/database": "^10.0",
+        "illuminate/events": "^10.0",
+        "nikic/fast-route": "^1.3"
+    }
+}
