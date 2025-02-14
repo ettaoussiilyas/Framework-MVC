@@ -90,7 +90,12 @@ return [
     ],
     [
         'method' => 'POST',
-        'uri' => '/user/articles',
+        'uri' => '/user/articles/create',
         'handler' => 'UserController@store'
+    ],
+    [
+        'method' => 'GET',
+        'uri' => '/articles/create',
+        'handler' => 'ArticleController@create'
     ]
 ]; 

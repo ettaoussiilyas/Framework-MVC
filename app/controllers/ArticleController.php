@@ -69,7 +69,7 @@ class ArticleController extends Controller
         ]);
 
         $_SESSION['success'] = "Article created successfully!";
-        header('Location: /articles');
+        header('Location: /user/index');
         exit;
     }
 
