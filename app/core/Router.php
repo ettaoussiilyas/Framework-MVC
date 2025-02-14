@@ -13,15 +13,27 @@ class Router
 
     public function __construct()
     {
-        $this->dispatcher = simpleDispatcher(function(RouteCollector $r) {
-            $routes = require_once __DIR__ . '/../../config/routes.php';
-            
-            foreach ($routes as $route) {
-                $r->addRoute($route['method'], $route['uri'], $route['handler']);
+        $routesPath = __DIR__ . '/../../Routes/routes.php';
+        
+        if (!file_exists($routesPath)) {
+            throw new \Exception("Routes file not found at: " . $routesPath);
+        }
+
+        $routes = require $routesPath;
+        
+        if (!is_array($routes)) {
+            $routes = [];
+        }
+
+        $this->routes = $routes;
+
+        $this->dispatcher = simpleDispatcher(function(RouteCollector $r) use ($routes) {
+            if (is_array($routes)) {
+                foreach ($routes as $route) {
+                    $r->addRoute($route['method'], $route['uri'], $route['handler']);
+                }
             }
         });
-
-        $this->routes = require __DIR__ . '/../../config/routes.php';
     }
 
     private function handleMiddleware($middleware)
@@ -41,6 +53,10 @@ class Router
 
     public function dispatch($httpMethod, $uri)
     {
+        if (empty($this->routes)) {
+            throw new \Exception("No routes defined");
+        }
+
         $uri = rawurldecode(parse_url($uri, PHP_URL_PATH));
         
         foreach ($this->routes as $route) {

@@ -67,4 +67,9 @@ class Article extends Model
         return $query->whereNotNull('published_at')
                     ->where('published_at', '<=', now());
     }
+
+    public static function find($id)
+    {
+        return static::where('id', $id)->first();
+    }
 } 

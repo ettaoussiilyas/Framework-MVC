@@ -78,4 +78,23 @@ class ArticleController extends Controller
         $article = Article::find($id);
         return $this->view('articles/show', ['article' => $article]);
     }
+
+    public function destroy($id){
+        Article::deleteArticle($id);
+        return redirectWithSuccess('/articles', 'Article deleted successfully');
+    }
+
+    public function edit($id){
+        $article = Article::find($id);
+        return $this->view('articles/edit', ['article' => $article]);
+    }
+
+    public function update($id){
+        $article = Article::find($id);
+        $article->update([
+            'title' => $_POST['title'],
+            'content' => $_POST['content']
+        ]);
+        return redirectWithSuccess('/articles', 'Article updated successfully');
+    }
 } 
