@@ -39,7 +39,7 @@ class UserController extends Controller
     public function articles()
     {
         $articles = Article::all();
-        return $this->view('user/articles', [
+        return $this->view('user/index', [
             'articles' => $articles,
             'user' => $this->auth->user()
         ]);

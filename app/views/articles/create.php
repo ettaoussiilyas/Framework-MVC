@@ -18,7 +18,7 @@
                 </div>
             <?php endif; ?>
 
-            <form action="/articles" method="POST">
+            <form action="/user/articles/create" method="POST">
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
                         Title
